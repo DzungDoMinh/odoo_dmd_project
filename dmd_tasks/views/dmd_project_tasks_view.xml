@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dmd_project_task_form" model="ir.ui.view">
+            <field name="name">DMD task form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
+                    <!--  add new item  -->
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="task_dependency_ids" widget="many2many_tags"/>
+                    <!--  add new item  -->
+                </xpath>
+<!--                <xpath expr="//field[@name='children']" position="attributes">-->
+<!--                    <attribute name="string">Số con</attribute>>-->
+<!--                    &lt;!&ndash;  change this label  &ndash;&gt;-->
+<!--                </xpath>-->
+<!--                <xpath expr="//form//sheet//notebook//page[2]//group[1]//group[3]" position="attributes">-->
+<!--                    <attribute name="string">Tình trạng</attribute>> &lt;!&ndash; Marital Status &ndash;&gt;-->
+<!--                    &lt;!&ndash; change a group label &ndash;&gt;-->
+<!--                    &lt;!&ndash; check path carefully in "con bọ" button -> "Edit View: Form" => get .xml form view record  &ndash;&gt;-->
+<!--                    &lt;!&ndash; page[index start is 1] (use Atom/... to see) &ndash;&gt;-->
+<!--                </xpath>-->
+
+<!--                &lt;!&ndash; Add more button in HEADER toolbar &ndash;&gt;-->
+<!--                <xpath expr="//form//sheet" position="before">-->
+<!--                    <header>-->
+<!--                        <button name="bt_guiemail_func" type="object" string="Gửi email" class="oe_highlight"/>-->
+<!--                    </header>-->
+<!--                </xpath>-->
+
+            </field>
+        </record>
+
+        <record id="dmd_project_task_tree" model="ir.ui.view">
+            <field name="name">DMD task tree</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="date_start" widget="date"/>  <!-- https://www.candidroot.com/blog/our-candidroot-blog-1/post/widgets-in-odoo-13-16 -->
+                    <field name="date_stop"/>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="after">
+                    <field name="task_dependency_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--        &lt;!&ndash; more info in Kanban view items &ndash;&gt;-->
+<!--        <record id="bms_hr_employee_kanban" model="ir.ui.view">-->
+<!--            <field name="name">Nhân viên Kanban</field>-->
+<!--            <field name="model">hr.employee</field>-->
+<!--            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='name']" position="after">-->
+<!--                    <br/>-->
+<!--                    <span>Số di động:</span>-->
+<!--                    <field name="mobile_phone" string="Số di động" />-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; More command in combobox "Action" of Employee table (multi row effect) &ndash;&gt;-->
+<!--        <record id="ir_actions_server_dmd_cmsn" model="ir.actions.server">-->
+<!--            <field name="name">Chúc mừng sinh nhật</field>-->
+<!--            <field name="model_id" ref="hr.model_hr_employee"/>-->
+<!--            <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">-->
+<!--                if records:-->
+<!--                    for record in records:-->
+<!--                        action = record.chuc_mung_sinh_nhat()-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+
+</odoo>
